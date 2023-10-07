@@ -1,36 +1,7 @@
 import { Ponto } from "../models/Ponto";
-import { Vetor } from "../types/Vetor.type";
+import { Vetor } from "../models/Vetor";
 
 export class MathGAUtil {
-    static calcularDeterminantePontos(pontoA: Ponto, pontoB: Ponto, pontoC:Ponto): number {
-
-        /**
-         * Sarrus
-         * xA   yA   1   |   xA   yA
-         * xB   yB   1   |   xB   yB
-         * xC   yC   1   |   xC   yC
-         */
-
-        /**
-         * Macete de Sarrus
-         * xA   yA
-         * xB   yB
-         * xC   yC
-         * xA   yA
-         * 
-         * Diagonais
-         * Esquerda = (yA * xB + yB * xC + yC * xA)
-         * Direita = (xA * yB + xB * yC + xC * yA)
-         * 
-         * Resultado = Direita - Esquerda
-         */
-
-        const diagonalEsquerda = pontoA.y * pontoB.x + pontoB.y * pontoC.x + pontoC.y * pontoA.x;
-        const diagonalDireita = pontoA.x * pontoB.y + pontoB.x * pontoC.y + pontoC.x * pontoA.y;
-
-        
-        return diagonalDireita - diagonalEsquerda;
-    }
 
     static calcularDeterminante(...pontos : Ponto[]): number {
         
@@ -49,27 +20,16 @@ export class MathGAUtil {
         
         return diagonalDireita - diagonalEsquerda;
     }
-
-    static obterVetor(origem: Ponto, extremidade: Ponto): Vetor {
-        return [extremidade.x - origem.x, extremidade.y - origem.y]
-    }
-
-    static normaVetor(vetor: Vetor) {
-        return Math.sqrt(Math.pow(vetor[0], 2) + Math.pow(vetor[1], 2))
-    }
-
+    
     static calcularAnguloVetores(u: Vetor, v: Vetor) {
-        const normaU = this.normaVetor(u);
 
-        const normaV = this.normaVetor(v);
-
-        const cosseno =  this.produtoInternoVetores(u,v) / (normaU * normaV);
+        const cosseno =  this.produtoInternoVetores(u,v) / (u.norma * v.norma);
 
         return this.anguloCosseno(cosseno);
     }
 
     static produtoInternoVetores(u: Vetor, v: Vetor): number {
-        return u[0] * v[0] + u[1] * v[1];
+        return u.i * v.i + u.j * v.j;
     }
 
     private static anguloCosseno(cosseno: number): number {
