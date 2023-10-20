@@ -1,0 +1,5 @@
+# Transpiler 
+dist
+
+# Dependency directories
+node_modules
