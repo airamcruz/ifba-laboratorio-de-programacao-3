@@ -8,7 +8,7 @@ const Container = styled.button`
     padding: 0.75rem;
     cursor: pointer;
     &:hover {
-        background-color: #D79BC2;
+        background-color: #7b29a1;
     }
     &:focus {
         outline: none;
