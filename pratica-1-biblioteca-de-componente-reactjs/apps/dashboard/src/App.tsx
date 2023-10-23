@@ -1,41 +1,40 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import { Button } from '@ifba-lab3-reactjs/component-library'
+import {  LayoutSpliter } from '@ifba-lab3-reactjs/component-library'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-      <div>
-        <p className="read-the-docs">
-          Testando componente botão
-        </p>
-        <Button caption='testando' />
-      </div>
-    </>
+    <LayoutSpliter.Root backgroundColor='#ececec'>
+      <LayoutSpliter.Container orientacao={LayoutSpliter.Orientacao.Horizontal}>
+        <LayoutSpliter.Nav.Container>
+          <LayoutSpliter.Nav.Header>
+            <p>NavHeader</p>
+          </LayoutSpliter.Nav.Header>
+          <LayoutSpliter.Nav.Content>
+            <LayoutSpliter.Nav.Item>Item 1</LayoutSpliter.Nav.Item>
+            <LayoutSpliter.Nav.Item>Item 2</LayoutSpliter.Nav.Item>
+            <LayoutSpliter.Nav.Item>Item 3</LayoutSpliter.Nav.Item>
+          </LayoutSpliter.Nav.Content>
+          <LayoutSpliter.Nav.Footer>
+            <p>NavFooter</p>
+          </LayoutSpliter.Nav.Footer>
+        </LayoutSpliter.Nav.Container>
+
+        <LayoutSpliter.Content>
+          <LayoutSpliter.Container orientacao={LayoutSpliter.Orientacao.Vertical}>
+            <LayoutSpliter.Nav.Container>
+              <LayoutSpliter.Nav.Content>
+                <LayoutSpliter.Nav.Item>
+                  Item Do menu
+                </LayoutSpliter.Nav.Item>
+              </LayoutSpliter.Nav.Content>
+            </LayoutSpliter.Nav.Container>
+            <LayoutSpliter.Content>
+              <p>Conteudo</p>
+            </LayoutSpliter.Content>
+          </LayoutSpliter.Container>
+        </LayoutSpliter.Content>
+
+      </LayoutSpliter.Container>
+    </LayoutSpliter.Root>
   )
 }
 
