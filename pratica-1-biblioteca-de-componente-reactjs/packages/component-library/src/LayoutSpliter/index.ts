@@ -1,24 +1,4 @@
-import { LayoutSpliterRoot } from "./LayoutSpliterRoot";
-import { LayoutSpliterContainer } from "./components/Container/LayoutSpliterContainer";
-import { LayoutSpliterContent } from "./components/Content/LayoutSpliterContent";
-import { LayoutSpliterNav } from "./components/Nav/LayoutSpliterNav";
-import { LayoutSpliterNavContent } from "./components/NavContent/LayoutSpliterNavContent";
-import { LayoutSpliterNavFooter } from "./components/NavFooter/LayoutSpliterNavFooter";
-import { LayoutSpliterNavHeader } from "./components/NavHeader/LayoutSpliterNavHeader";
-import { LayoutSpliterNavItem } from "./components/NavItem/LayoutSpliterNavItem";
-import { LayoutSpliterOrientacao } from "./contexts/LayoutSpliterContext";
+export { SplitterContainer as LayoutSplitter } from "./components/Container/SplitterContainer";
+export { SplitterPanel as SplitterPanel  } from "./components/Panel/SpliterPanel";
+export { SplitterOrientacao as SplitterDirection  } from "./hook/SplitterContext";
 
-
-export const LayoutSpliter  = {
-    Root: LayoutSpliterRoot,
-    Container: LayoutSpliterContainer,
-    Content: LayoutSpliterContent,
-    Nav: {
-        Container: LayoutSpliterNav,
-        Header: LayoutSpliterNavHeader,
-        Content: LayoutSpliterNavContent,
-        Footer: LayoutSpliterNavFooter,
-        Item: LayoutSpliterNavItem
-    },
-    Orientacao: LayoutSpliterOrientacao
-}
