@@ -76,7 +76,7 @@ const CheckboxStyle = styled.input<CheckboxStyleProps>`
 
 const LabelStyle = styled.label<CheckboxStyleProps>`
     cursor: pointer;
-    font-size: ${({fontsize}) => fontsize ?? ''};
+    font-size: ${({fontsize}) => fontsize ?? '1rem'};
 `;
 
 

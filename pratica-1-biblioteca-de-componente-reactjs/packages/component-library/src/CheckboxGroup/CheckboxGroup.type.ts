@@ -1,6 +1,11 @@
-import { ReactNode } from "react";
 import { CheckboxGroupStyleProps } from "./CheckboxGroup.style";
 
+export type CheckboxGroupElement = {
+    descricao: string;
+    name?: string;
+}
+
 export interface CheckboxGroupProps extends CheckboxGroupStyleProps {
-    children?: ReactNode
+    titulo: string;
+    elementos: CheckboxGroupElement[];
 }

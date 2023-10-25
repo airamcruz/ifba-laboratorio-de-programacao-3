@@ -4,9 +4,11 @@ import { CheckboxProps } from "./Checkbox.type";
 
 export const Checkbox = (props : CheckboxProps) => {
 
-    const { label, ...rest } = props;
+    const { label, name, ...rest } = props;
 
-    const checkboxId = useId();
+    let checkboxId = useId();
+
+    checkboxId = name ?? checkboxId;
 
     return (
         <Styled.Container>
