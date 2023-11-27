@@ -11,7 +11,7 @@ const getStyles = (props: _FooterStylesProps) => {
             paddingRight: 5,
             borderTopWidth: 1,
             borderTopColor: 'rgba(24, 24, 24, 0.1)',
-            backgroundColor: props.backgroundColor ?? 'white',
+            backgroundColor: props.backgroundColor ?? undefined,
 
             flexDirection: 'row',
             gap: 8,

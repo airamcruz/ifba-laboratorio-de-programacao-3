@@ -9,6 +9,7 @@ import { Content } from "./components/content/content";
 import { useModalContext } from "./hook/useModalContext";
 import { CloseButton } from "./components/closebutton/closebutton";
 import { ActionButton } from "./components/actionbutton/actionbutton";
+import { ReactNodeUtil } from "../../utils/ReactNodeUtil";
 
 const Backdrop = (props: { isStatic: boolean, animation: Animated.Value, style: ViewStyle }) => {
 
@@ -87,18 +88,7 @@ const ModalCustom = ({
         Animated.parallel(animations)
             .start(() => setOpen(false));
     };
-
-    function findElement (type: any): ReactNode | null {
-        if(Array.isArray(children)) {
-            return children.find((value: React.ReactNode, index: number, array: React.ReactNode[]) => {
-                const child = value as ReactElement;
-                return child.type == type ? value : null;
-            }) 
-        } else {
-            return (children as ReactElement).type == type ? children : null;
-        }
-    }
-
+    
     return (
         <ModalProvider isOpen={isOpen} onRequestClose={onRequestCloseModal}>
             <Modal
@@ -120,11 +110,11 @@ const ModalCustom = ({
                         animation={animationType === 'slide' ? slideAnimation : fadeAnimation}
                         isSlide={animationType === 'slide'}
                     >
-                        {findElement(Header)}
+                        {ReactNodeUtil.findElement(children ,Header)}
 
-                        {findElement(Content)}
+                        {ReactNodeUtil.findElement(children ,Content)}
 
-                        {findElement(Footer)}
+                        {ReactNodeUtil.findElement(children ,Footer)}
 
                     </Container>
 

@@ -10,6 +10,7 @@ const getStyles = (props:_HeaderStylesProps)  => {
             paddingRight: 20,
             borderBottomWidth: 1,
             borderBottomColor: 'rgba(24, 24, 24, 0.1)',
+            backgroundColor: props.backgroundColor ?? undefined,
 
             flexDirection: 'row',
 
