@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { SplitLayoutContext } from "./splitLayoutProvider";
+import { SplitLayoutContext } from "./SplitLayoutProvider";
 
 function useSplitLayoutContext(componente: string) {
     const context = useContext(SplitLayoutContext);

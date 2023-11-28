@@ -9,6 +9,7 @@ interface _PanelStyleProps extends PanelStyleProps{
 
 interface PanelStyleProps {
     backgroundColor?: string;
+    padding?: number;
 }
 
 interface PanelProps {

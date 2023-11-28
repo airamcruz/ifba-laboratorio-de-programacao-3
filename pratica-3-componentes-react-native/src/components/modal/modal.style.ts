@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { _ModalStylesProps } from "./modal.type";
+import { _ModalStylesProps } from "./Modal.type";
 
 const getStyles = (props: _ModalStylesProps) => {
 

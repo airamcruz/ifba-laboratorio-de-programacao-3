@@ -1,7 +1,7 @@
 import { ScrollView, View } from "react-native"
-import { PanelProps } from "./panel.type"
-import { getStyles } from "./panel.style"
-import { useSplitLayoutContext } from "../../hook/useModalContext"
+import { PanelProps } from "./Panel.type";
+import { useSplitLayoutContext } from "../../hook/UseSplitLayoutContext";
+import { getStyles } from "./Panel.style";
 
 const Panel = ({
     children,

@@ -1,6 +1,6 @@
 import { View } from "react-native"
-import { FooterProps } from "./footer.type"
-import { getStyles } from "./footer.style"
+import { FooterProps } from "./Footer.type"
+import { getStyles } from "./Footer.style"
 
 const Footer = ({
     style,

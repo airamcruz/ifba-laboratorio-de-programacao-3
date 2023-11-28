@@ -1,7 +1,7 @@
 import { Text, TouchableOpacity } from "react-native";
-import { useModalContext } from "../../hook/useModalContext";
-import { getStyles } from "./actionbutton.style";
-import { ActionButtonProps } from "./actionbutton.type";
+import { useModalContext } from "../../hook/UseModalContext";
+import { getStyles } from "./ActionButton.style";
+import { ActionButtonProps } from "./ActionButton.type";
 
 const ActionButton = ({
     label,

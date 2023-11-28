@@ -1,7 +1,7 @@
 import { Text, TouchableOpacity } from "react-native";
-import { useModalContext } from "../../hook/useModalContext";
-import { CloseButtonProps } from "./closebutton.type";
-import { getStyles } from "./closebutton.style";
+import { useModalContext } from "../../hook/UseModalContext";
+import { CloseButtonProps } from "./CloseButton.type";
+import { getStyles } from "./CloseButton.style";
 
 const CloseButton = ({
     label,

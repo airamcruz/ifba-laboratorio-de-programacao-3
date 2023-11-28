@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { ContentStyleProps } from "./content.type";
+import { ContentStyleProps } from "./Content.type";
 
 const getStyles = (props:ContentStyleProps) => {
     return StyleSheet.create({

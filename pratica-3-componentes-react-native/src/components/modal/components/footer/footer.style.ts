@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { _FooterStylesProps } from "./footer.type";
+import { _FooterStylesProps } from "./Footer.type";
 
 const getStyles = (props: _FooterStylesProps) => {
 

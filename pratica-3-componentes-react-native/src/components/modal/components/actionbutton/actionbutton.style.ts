@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { _ActionButtonStylesProps } from "./actionbutton.type";
+import { _ActionButtonStylesProps } from "./ActionButton.type";
 
 const getStyles = (props: _ActionButtonStylesProps)  => {
     return StyleSheet.create({

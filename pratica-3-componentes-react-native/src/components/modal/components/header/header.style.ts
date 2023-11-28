@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { _HeaderStylesProps } from "./header.type";
+import { _HeaderStylesProps } from "./Header.type";
 
 const getStyles = (props:_HeaderStylesProps)  => {
     return StyleSheet.create({

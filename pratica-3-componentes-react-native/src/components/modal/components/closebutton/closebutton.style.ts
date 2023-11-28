@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { _CloseButtonStylesProps } from "./closebutton.type";
+import { _CloseButtonStylesProps } from "./CloseButton.type";
 
 const getStyles = (props: _CloseButtonStylesProps)  => {
     return StyleSheet.create({

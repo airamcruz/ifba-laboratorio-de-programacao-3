@@ -1,10 +1,11 @@
 import { StyleSheet } from "react-native";
-import { _PanelStyleProps } from "./panel.type";
+import { _PanelStyleProps } from "./Panel.type";
 
 const getStyles = (props:_PanelStyleProps) => {
     return StyleSheet.create({
         container: {
             backgroundColor: props.backgroundColor ?? 'transparent',
+            padding: props.padding ?? 8,
             flex: 1,
             
             width: '100%',

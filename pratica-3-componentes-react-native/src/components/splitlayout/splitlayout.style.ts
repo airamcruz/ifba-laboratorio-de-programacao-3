@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { _SplitLayoutStyleProps } from "./splitlayout.type";
+import { _SplitLayoutStyleProps } from "./SplitLayout.type";
 
 const getStyles = (props: _SplitLayoutStyleProps) => {
     
