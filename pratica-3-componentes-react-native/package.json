@@ -1,5 +1,6 @@
 {
   "name": "pratica-3-componentes-react-native",
+  "author": "Leonardo Airam Muniz Cruz",
   "version": "1.0.0",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {

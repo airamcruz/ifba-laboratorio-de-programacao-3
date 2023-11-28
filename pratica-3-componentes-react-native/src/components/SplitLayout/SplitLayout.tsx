@@ -2,8 +2,8 @@ import { View, useWindowDimensions } from "react-native";
 import { SplitLayoutProps } from "./SplitLayout.type";
 import { ReactNodeUtil } from "../../utils/ReactNodeUtil";
 import { getStyles } from "./SplitLayout.style";
-import { SplitLayoutProvider } from "./hook/SplitLayoutProvider";
-import { Panel } from "./components/Panel/Panel";
+import { SplitLayoutProvider } from "./hook";
+import { Panel } from "./components";
 
 const SplitLayoutCustom = ({
     children,

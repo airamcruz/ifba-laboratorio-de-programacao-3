@@ -1,7 +1,7 @@
-import { Button, Text, TouchableOpacity, View, ViewStyle } from "react-native";
-import { HeaderProps, HeaderStylesProps } from "./Header.type";
+import { Text, TouchableOpacity, View } from "react-native";
+import { HeaderProps } from "./Header.type";
 import { getStyles } from "./Header.style";
-import { useModalContext } from "../../hook/UseModalContext";
+import { useModalContext } from "../../hook";
 
 
 const CloseButton = () => {

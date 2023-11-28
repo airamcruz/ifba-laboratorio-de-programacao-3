@@ -43,7 +43,7 @@ export default function App() {
   const [nomePersonagem, setNomePersonagem] = useState('');
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
 
         <SplitLayout orientation='vertical' style={{backgroundColor: '#f0f8ff'}}>
 
@@ -54,15 +54,15 @@ export default function App() {
           <SplitLayout.Panel>
             <CustomModal />
 
-            <Label text='Personagem' />
-            <TextEdit value={nomePersonagem} onChange={setNomePersonagem} placeholder='Digite o nome do personagem...' />
+            <Label text='Personagem' style={{fontWeight: 'bold', color: '#ff6347'}} />
+            <TextEdit value={nomePersonagem} onChange={setNomePersonagem} placeholder='Digite o nome do personagem...' style={{borderColor: '#6495ed', borderColorFocus: '#00bfff'}} />
             <Text>{nomePersonagem}</Text>
 
           </SplitLayout.Panel>
         </SplitLayout>
 
       <StatusBar style="auto" />
-    </View>
+    </SafeAreaView>
   );
 
 }
@@ -70,7 +70,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#a11515',
     alignItems: 'center',
     justifyContent: 'center',
   },

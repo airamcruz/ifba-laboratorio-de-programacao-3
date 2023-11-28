@@ -1,5 +1,6 @@
-import { StyleSheet } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 import { TextEditStylesProps } from "./TextEdit.type";
+
 
 const getStyles = (props: TextEditStylesProps) => {
     return StyleSheet.create({
@@ -10,11 +11,12 @@ const getStyles = (props: TextEditStylesProps) => {
             padding: 10,
             borderWidth: 1,
             borderColor: props.borderColor ?? '#333',
+            color: props.color ?? '#333',
             borderRadius: 6,
-            outlineWidth: 0,
+            outlineWidth: Platform.OS == "android" || Platform.OS == "ios" ? undefined : 0,
         },
         inputFocused: {
-            borderColor: 'blue',
+            borderColor:  props.borderColorFocus ?? '#483d8b',
         }
     });
 }

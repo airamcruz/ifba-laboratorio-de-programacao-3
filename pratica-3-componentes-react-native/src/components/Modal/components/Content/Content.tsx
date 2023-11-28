@@ -1,6 +1,6 @@
 import { ScrollView, View } from "react-native"
 import { ContentProps } from "./Content.type"
-import { getStyles } from "./Contentstyle"
+import { getStyles } from "./Content.style"
 
 const Content = (props:ContentProps) => {
 

@@ -1,15 +1,10 @@
 import { Animated, useWindowDimensions, Modal, TouchableWithoutFeedback, ViewStyle, View } from "react-native";
-import React, { ReactElement, ReactNode, useRef } from "react";
-import { ModalProvider } from "./hook/ModalProvider";
-import { Footer } from "./components/Footer/Footer";
-import { Header } from "./components/Header/Header";
-import { Content } from "./components/Content/Content";
-import { useModalContext } from "./hook/UseModalContext";
-import { CloseButton } from "./components/CloseButton/CloseButton";
-import { ActionButton } from "./components/ActionButton/ActionButton";
+import { ReactElement, ReactNode, useRef } from "react";
 import { ReactNodeUtil } from "../../utils/ReactNodeUtil";
 import { ModalProps } from "./Modal.type";
 import { getStyles } from "./Modal.style";
+import { ModalProvider, useModalContext } from "./hook";
+import { ActionButton, CloseButton, Content, Footer, Header } from "./components";
 
 const Backdrop = (props: { isStatic: boolean, animation: Animated.Value, style: ViewStyle }) => {
 

@@ -1,5 +1,3 @@
-import { ReactNode } from "react"
-
 interface _CloseButtonStylesProps extends CloseButtonStylesProps {
     fill: boolean;
 }
