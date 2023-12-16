@@ -1,8 +1,8 @@
-import { Livro } from "../../../entities/Livro";
-import { ActionsType } from "../../../hooks/createReducerContext/actions";
-import { IStateProps, TFunctionReducer } from "../../../hooks/createReducerContext/types";
-import { TActionsLivro } from "./actions";
+import { Livro } from "src/entities/livro.model";
 import { TPayloadCreateLivro, TPayloadDeleteLivro, TPayloadDetailsLivro, TPayloadUpdateLivro } from "./types";
+import { TFunctionReducer, IStateProps } from "hooks/createReducerContext/types";
+import { ActionsType } from "hooks/createReducerContext/actions";
+import { TActionsLivro } from "./actions";
 
 const initialState: IStateProps<Livro> = {
     items: [],

@@ -9,6 +9,11 @@ interface IStateProps<S> {
     message: string;
 };
 
+interface IReducerContextProps<S, A> {
+    state: IStateProps<S>;
+    dispatch: React.Dispatch<A>;
+};
+
 type TReducerProviderProps = {
     children: ReactNode
 }
@@ -17,11 +22,6 @@ type TReducerProps<S, A> = {
     reducer: TFunctionReducer<S, A>,
     initialState: IStateProps<S>,
 }
-
-interface IReducerContextProps<S, A> {
-    state: IStateProps<S>;
-    dispatch: React.Dispatch<A>;
-};
 
 export {
     TFunctionReducer,

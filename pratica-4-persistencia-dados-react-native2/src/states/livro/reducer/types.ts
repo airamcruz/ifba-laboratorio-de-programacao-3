@@ -1,4 +1,4 @@
-import { Genero } from "../../../entities/Livro/type";
+import { Genero } from "src/@types/livro";
 
 type TPayloadCreateLivro = {
     titulo: string;

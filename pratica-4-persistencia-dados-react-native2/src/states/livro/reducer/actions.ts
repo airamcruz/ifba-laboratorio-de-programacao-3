@@ -1,5 +1,5 @@
-import { ActionsType, TActionError, TActionInputField } from "../../../hooks/createReducerContext/actions"
-import { TPayloadCreateLivro, TPayloadDeleteLivro, TPayloadDetailsLivro, TPayloadUpdateLivro } from "./types"
+import { ActionsType } from "hooks/createReducerContext/actions";
+import { TPayloadCreateLivro, TPayloadDeleteLivro, TPayloadDetailsLivro, TPayloadUpdateLivro } from "./types";
 
 type TActionCreateLivro = {
     type: ActionsType.CREATE,
@@ -25,7 +25,7 @@ type TActionListLivro = {
     type: ActionsType.LIST_ALL,
 }
 
-type TActionsLivro = TActionCreateLivro | TActionUpdateLivro | TActionDeleteLivro | TActionDetailsLivro | TActionListLivro | TActionError | TActionInputField
+type TActionsLivro = TActionCreateLivro | TActionUpdateLivro | TActionDeleteLivro | TActionDetailsLivro | TActionListLivro
 
 export {
     TActionsLivro,

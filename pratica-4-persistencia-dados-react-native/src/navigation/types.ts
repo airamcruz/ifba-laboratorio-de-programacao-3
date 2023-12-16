@@ -1,12 +1,9 @@
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 export type TScreenParamNavigation = {
-    home: undefined;
-    register: undefined;
-    update: undefined;
-    show: undefined;
-    showall: undefined;
-    delete: undefined;
+    Home: undefined;
+    Details: { id: number };
+    Form: { id: number } | undefined;
 }
 
-export type THomeStackParam = NativeStackNavigationProp<TScreenParamNavigation,"home","homestack">;
+// export type THomeStackParam = NativeStackNavigationProp<TScreenParamNavigation,"Home2","homestack">;

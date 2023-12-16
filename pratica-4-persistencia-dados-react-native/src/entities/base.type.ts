@@ -1,0 +1,3 @@
+interface IEntityBase{
+    id: number;
+};

@@ -1,21 +1,20 @@
 {
-    "extends": "expo/tsconfig.base",
-    "compilerOptions": {
-      "strict": true,
-      "allowSyntheticDefaultImports": true,
-      "rootDir": "./",
-      "baseUrl": "./",
-      "paths": {"app/*": ["./src/app/*"],
-                "cp/*": ["./src/cp/*"],
-                "entities/*": ["./src/entities/*"],
-                "hooks/*": ["./src/hooks/*"],
-                "types/*": ["src/@types/*"],
-                "navigation/*": ["src/navigation/*"],
-                "screens/*": ["src/screens/*"],
-                "states/*": ["src/states/*"],
-                },
-      "experimentalDecorators": true,
-      "emitDecoratorMetadata": true,
-      "strictPropertyInitialization": false,                 
-    }
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    // "baseUrl": "./",
+    // "paths": {
+    //   "cp/*": ["./src/cp/*"],
+    //   "entities/*": ["./src/entities/*"],
+    //   "hooks/*": ["./src/hooks/*"],
+    //   "navigation/*": ["./src/navigation/*"],
+    //   "repository/*": ["./src/repository/*"],
+    //   "screens/*": ["./src/screens/*"],
+    //   "services/*": ["./src/services/*"],
+    //   "states/*": ["./src/states/*"],
+    //   "stored/*": ["./src/stored/*"],
+    //   },
   }
+}

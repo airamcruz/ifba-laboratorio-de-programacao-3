@@ -1,8 +1,9 @@
-import { registerRootComponent } from 'expo';
-import "reflect-metadata"
-import "react-native-get-random-values"
+import 'reflect-metadata';
 import 'react-native-gesture-handler';
 
-import App from './App';
+import { registerRootComponent } from 'expo';
+
+import App from './src/App';
+// import App from '../../App';
 
 registerRootComponent(App);
