@@ -14,38 +14,41 @@ import {
 import { Livro } from '../../entities/Livro';
 import { ModalConfirm } from '../../cp/modal-confirm';
 import { HomeProps } from './types';
+import { useReducerContext } from '../../hooks';
+import { TActionsLivro } from '../../states/livro/reducer/actions';
+import { ActionsType } from '../../hooks/createReducerContext/actions';
 
+const Home: React.FC<HomeProps> = ({ navigation, route }) => {
 
-const Home: React.FC<HomeProps> = ({ routes }) => {
-
-  const [livros, setLivros] = useState<Livro[]>([]);
+  const {state, dispatch}= useReducerContext<Livro, TActionsLivro>("Home")
 
   const [modalVisible, setModalVisible] = useState(false);
 
-  const [livroIdToDelete, setLivroIdToDelete] = useState<number | null>(null);
+  const [livroId, setLivroId] = useState<number | null>(null);
 
   useEffect(() => {
   }, []);
 
   const handleEditar = (id: number) => {
+    dispatch({type: ActionsType.UPDATE, payload: {id, }})
   };
 
   const handleVisualizar = (id: number) => {
   };  
 
   const handleRemover = (livroId: number) => {
-    setLivroIdToDelete(livroId);
+    setLivroId(livroId);
     setModalVisible(true);
   };
 
   const confirmarExclusao = () => {
     setModalVisible(false);
-    setLivroIdToDelete(null);
+    setLivroId(null);
   };
 
   const cancelarExclusao = () => {
     setModalVisible(false);
-    setLivroIdToDelete(null);
+    setLivroId(null);
   };
 
   const renderItem: ListRenderItem<Livro> = ({ item }) => (
@@ -61,11 +64,11 @@ const Home: React.FC<HomeProps> = ({ routes }) => {
 
   return (
     <Container>
-      {livros.length === 0 ? (
+      {state.items.length === 0 ? (
         <MensagemVazia>Não há livros cadastrados.</MensagemVazia>
       ) : (
         <FlatList
-          data={livros}
+          data={state.items}
           renderItem={renderItem}
           keyExtractor={(item) => item.id.toString()}
         />

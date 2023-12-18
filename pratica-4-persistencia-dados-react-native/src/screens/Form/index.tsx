@@ -1,31 +1,32 @@
 import React, { useEffect, useState } from 'react';
 import {
-  Container,
+  BotaoSalvar,
+  Container, Input, TextoBotao,
 } from './styles';
 import { FormProps } from './types';
 import { Label } from '../../cp/label';
 import { Livro } from '../../entities/Livro';
 import { Genero } from '../../entities/Livro/type';
+import { TextEdit } from '../../cp/textedit';
+import { Button } from '../../cp/button';
 
 
-const Form: React.FC<FormProps> = ({ routes }) => {
+const Form: React.FC<FormProps> = ({ navigation, route }) => {
   const [titulo, setTitulo] = useState('');
   const [autor, setAutor] = useState('');
   const [genero, setGenero] = useState('');
   const [id, setId] = useState('');
 
-  const { navigation, route} = routes
-
   useEffect(() => {
 
-    const livroIdParam = route.params?.id as number || null;
+    const livroId = route.params?.id as number || null;
 
-    // Se um ID foi fornecido, busca o livro correspondente
-    if (livroIdParam) {
-      // Implemente a lógica para buscar o livro com o ID no seu sistema
-      // (pode ser uma chamada à API, consulta ao banco de dados, etc.)
+    if (livroId) {
+
+      navigation.setOptions({title: 'Editar'})
+      
       const livroExistente: Livro = {
-        id: livroIdParam,
+        id: livroId,
         titulo: 'Título do Livro Existente',
         autor: 'Autor do Livro Existente',
         genero: Genero.Outro,
@@ -47,18 +48,18 @@ const Form: React.FC<FormProps> = ({ routes }) => {
       return;
     }
 
-    // Crie um objeto Livro com os dados fornecidos
-    const novoLivro: Livro = {
-      id: livroIdParam || new Date().getTime(), // Usa o ID fornecido ou gera um novo ID
-      titulo,
-      autor,
-      genero,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    };
+    // // Crie um objeto Livro com os dados fornecidos
+    // const novoLivro: Livro = {
+    //   id: livroIdParam || new Date().getTime(), // Usa o ID fornecido ou gera um novo ID
+    //   titulo,
+    //   autor,
+    //   genero,
+    //   createdAt: new Date(),
+    //   updatedAt: new Date(),
+    // };
 
-    // Chame a função de callback para salvar o novo livro
-    onSalvar(novoLivro);
+    // // Chame a função de callback para salvar o novo livro
+    // onSalvar(novoLivro);
 
     // Limpe os campos após salvar
     setTitulo('');

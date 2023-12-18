@@ -4,10 +4,12 @@ import { Container,Input } from "./textedit.style";
 interface TextEditProps{
     width?: string;
     type?: 'text'|'email'|'password',
+    value?: string;
+    placeholder?: string;
     textChange?:(text:string)=>void,
 }
 
-const TextEdit:React.FC<TextEditProps> = ({width='120px',type='text',textChange}) => {
+const TextEdit:React.FC<TextEditProps> = ({width='120px',type='text', value, placeholder, textChange}) => {
 
     const textRef = useRef<string|undefined>();
     
@@ -19,9 +21,9 @@ const TextEdit:React.FC<TextEditProps> = ({width='120px',type='text',textChange}
     return (
 
         <Container w={width} >
-            {type==='text' && <Input onChangeText={(s:string) => handleChange(s)}/>}
-            {type==='password' && <Input secureTextEntry={true} onChangeText={(s:string) => handleChange(s)}/>}
-            {type==='email' && <Input keyboardType="email-address" onChangeText={(s:string) => handleChange(s)}/>}
+            {type==='text' && <Input value={value} placeholder={placeholder} onChangeText={(s:string) => handleChange(s)}/>}
+            {type==='password' && <Input value={value} placeholder={placeholder} secureTextEntry={true} onChangeText={(s:string) => handleChange(s)}/>}
+            {type==='email' && <Input value={value} placeholder={placeholder} keyboardType="email-address" onChangeText={(s:string) => handleChange(s)}/>}
         </Container>
 
     )

@@ -2,18 +2,23 @@ import { NavigationContainer } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { StackNavigator } from './navigation/stacknavigator';
-import { useDatabaseInitialize } from './hooks';
+import { createReducerContext, useDatabaseInitialize } from './hooks';
+import { initialState, reducer } from './states/livro/reducer';
 
 const AppRoot = () => {
-  
+
+  const [LivroProvider] = createReducerContext({ initialState, reducer })
+
   return (
-    <NavigationContainer>
-      <StackNavigator />
-    </NavigationContainer> 
+    <LivroProvider>
+      <NavigationContainer>
+        <StackNavigator />
+      </NavigationContainer>
+    </LivroProvider>
   )
 }
 
-const ErrorConnection = () => {  
+const ErrorConnection = () => {
 
   return (
     <NavigationContainer>
@@ -21,7 +26,7 @@ const ErrorConnection = () => {
         <Text>Error ao conectar o banco!</Text>
         <StatusBar style="auto" />
       </View>
-    </NavigationContainer> 
+    </NavigationContainer>
   )
 }
 
@@ -30,9 +35,9 @@ export default function App() {
   const [connected] = useDatabaseInitialize();
 
   return (
-      connected ? <AppRoot /> : <ErrorConnection />
+    connected ? <AppRoot /> : <ErrorConnection />
   );
-  
+
 }
 
 const styles = StyleSheet.create({

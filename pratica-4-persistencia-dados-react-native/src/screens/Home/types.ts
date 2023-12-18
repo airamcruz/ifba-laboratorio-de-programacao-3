@@ -1,10 +1,6 @@
-import { TScreenParamNavigation } from "../../navigation/types";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { THomeStackParam,  } from "../../navigation/types";
 
-type THomeStackParam = NativeStackScreenProps<TScreenParamNavigation, "Form">;
-
-interface HomeProps{
-    routes: THomeStackParam
+interface HomeProps extends THomeStackParam{
 }
 
 export {

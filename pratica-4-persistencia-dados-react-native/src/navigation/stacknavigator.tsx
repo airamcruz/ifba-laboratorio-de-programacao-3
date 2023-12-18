@@ -1,11 +1,10 @@
 import { TransitionPresets, createStackNavigator } from '@react-navigation/stack';
-import { TScreenParamNavigation } from './types';
+import { THomeStackParam, TScreenParamNavigation } from './types';
 
 import { View, Text } from 'react-native';
-import { Home2 } from '../screens/Home2';
-import { ListLivro } from '../screens/Home';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { TLivroListStackProps } from '../screens/Home/types';
+import { Home } from '../screens/Home';
+import { Form } from '../screens/Form';
 
 
 // as telas a seguir devem ser implementadas adequamente
@@ -26,23 +25,29 @@ const screenOptionStyle = {
   ...TransitionPresets.SlideFromRightIOS
 };
 
+const HeaderActions = ({ route, navigation  }: THomeStackParam) => {
+  return (
+    <TouchableOpacity onPress={() => navigation.push('Form')} style={{ marginRight: 10 }}>
+      <Text>Adicionar</Text>
+    </TouchableOpacity>
+  );
+}
+
+
 const StackNavigator = () => {
 
   return (
     <Stack.Navigator screenOptions={screenOptionStyle}  >
       <Stack.Screen
-        name="List"
-        component={ListLivro}
-        options={({ route, navigation  }: TLivroListStackProps) => ({
+        name="Home"
+        component={Home}
+        options={({ route, navigation }: THomeStackParam) => ({
           title: 'Lista de Livros',
-          headerRight: () => (
-            <TouchableOpacity onPress={() => navigation.push('Form')} style={{ marginRight: 10 }}>
-              <Text>Adicionar</Text>
-            </TouchableOpacity>
-          ),
+          headerRight: () => HeaderActions({ route, navigation }),
         })}
       />
-      {/* <Stack.Screen name="register" component={Register} options={{title:"Novo"}} />
+      <Stack.Screen name="Form" component={Form} options={{title:"Novo"}} />
+      {/* 
         <Stack.Screen name="update" component={Update} options={{title:"Atualizar"}} />
         <Stack.Screen name="show" component={Show} options={{title:"Visualizar"}} />
         <Stack.Screen name="delete" component={Delete} options={{title:"Excluir"}} /> */}
