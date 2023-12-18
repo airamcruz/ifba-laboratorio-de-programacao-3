@@ -1,4 +1,4 @@
-import { Livro } from "src/entities/livro.model"
+import { Livro } from "../../../entities/Livro";
 import { createReducerContext } from "../../../hooks/createReducerContext";
 import { reducer, initialState } from "../reducer";
 import { TActionsLivro } from "../reducer/actions";

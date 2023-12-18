@@ -5,66 +5,63 @@ import {
 } from './styles';
 import { FormProps } from './types';
 import { Label } from '../../cp/label';
-import { Livro } from '../../entities/Livro';
 import { Genero } from '../../entities/Livro/type';
-import { TextEdit } from '../../cp/textedit';
-import { Button } from '../../cp/button';
+import { ActionsType } from '../../hooks/createReducerContext/actions';
+import { Picker } from '@react-native-picker/picker';
+import { useLivroContext } from '../../states/livro/context';
 
 
 const Form: React.FC<FormProps> = ({ navigation, route }) => {
+
+  const {state, dispatch}= useLivroContext("Form")
+
+  const [livroId, setLivroId] = useState<number | null>(null);
   const [titulo, setTitulo] = useState('');
   const [autor, setAutor] = useState('');
-  const [genero, setGenero] = useState('');
-  const [id, setId] = useState('');
+  const [genero, setGenero] = useState<Genero | null>(null);
 
   useEffect(() => {
 
     const livroId = route.params?.id as number || null;
 
+    setLivroId(livroId);
+
     if (livroId) {
 
       navigation.setOptions({title: 'Editar'})
       
-      const livroExistente: Livro = {
-        id: livroId,
-        titulo: 'Título do Livro Existente',
-        autor: 'Autor do Livro Existente',
-        genero: Genero.Outro,
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      };
+      dispatch({type: ActionsType.DETAILS, payload:{id: livroId}});
 
-      // Preenche os campos com os dados do livro existente
-      setTitulo(livroExistente.titulo);
-      setAutor(livroExistente.autor);
-      setGenero(livroExistente.genero);
+      if(state.item != null) {
+        setTitulo(state.item.titulo);
+        setAutor(state.item.autor);
+        setGenero(state.item.genero);
+      }
+
     }
   }, []);
 
   const handleSalvar = () => {
-    // Valide os campos conforme necessário
     if (!titulo || !autor || !genero) {
       alert('Preencha todos os campos!');
       return;
     }
 
-    // // Crie um objeto Livro com os dados fornecidos
-    // const novoLivro: Livro = {
-    //   id: livroIdParam || new Date().getTime(), // Usa o ID fornecido ou gera um novo ID
-    //   titulo,
-    //   autor,
-    //   genero,
-    //   createdAt: new Date(),
-    //   updatedAt: new Date(),
-    // };
-
-    // // Chame a função de callback para salvar o novo livro
-    // onSalvar(novoLivro);
-
-    // Limpe os campos após salvar
-    setTitulo('');
-    setAutor('');
-    setGenero('');
+    if(livroId) {
+      dispatch({type: ActionsType.UPDATE, payload: {
+        autor: autor,
+        genero: genero,
+        titulo: titulo,
+        id: livroId
+      }})
+    } else {
+      dispatch({type: ActionsType.CREATE, payload: {
+        autor: autor,
+        genero: genero,
+        titulo: titulo
+      }})
+    }
+    navigation.pop();
   };
 
   return (
@@ -84,11 +81,16 @@ const Form: React.FC<FormProps> = ({ navigation, route }) => {
       />
 
       <Label>Gênero:</Label>
-      <Input
-        value={genero}
-        onChangeText={setGenero}
-        placeholder="Digite o gênero do livro"
-      />
+
+      <Picker
+        selectedValue={genero}
+        onValueChange={setGenero}
+      >
+        <Picker.Item label="Selecione" value={null} />
+        {Object.values(Genero).map((opcao, index) => (
+          <Picker.Item key={index} label={opcao} value={opcao} />
+        ))}
+      </Picker>
 
       <BotaoSalvar onPress={handleSalvar}>
         <TextoBotao>Salvar</TextoBotao>

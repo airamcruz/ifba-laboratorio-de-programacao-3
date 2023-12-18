@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { FlatList, ListRenderItem } from 'react-native';
-import { StackNavigationProp } from '@react-navigation/stack';
 import {
   Container,
   LivroItem,
@@ -14,26 +13,27 @@ import {
 import { Livro } from '../../entities/Livro';
 import { ModalConfirm } from '../../cp/modal-confirm';
 import { HomeProps } from './types';
-import { useReducerContext } from '../../hooks';
-import { TActionsLivro } from '../../states/livro/reducer/actions';
 import { ActionsType } from '../../hooks/createReducerContext/actions';
+import { useLivroContext } from '../../states/livro/context';
 
 const Home: React.FC<HomeProps> = ({ navigation, route }) => {
 
-  const {state, dispatch}= useReducerContext<Livro, TActionsLivro>("Home")
+  const {state, dispatch}= useLivroContext("Home")
 
   const [modalVisible, setModalVisible] = useState(false);
 
-  const [livroId, setLivroId] = useState<number | null>(null);
+  const [livroId, setLivroId] = useState<number|null>(null);
 
-  useEffect(() => {
+  useEffect(() => {   
+    dispatch({type: ActionsType.LIST_ALL})
   }, []);
 
   const handleEditar = (id: number) => {
-    dispatch({type: ActionsType.UPDATE, payload: {id, }})
+    navigation.push('Form', {id: id})
   };
 
   const handleVisualizar = (id: number) => {
+    navigation.push('Details', {id: id})
   };  
 
   const handleRemover = (livroId: number) => {
@@ -42,6 +42,7 @@ const Home: React.FC<HomeProps> = ({ navigation, route }) => {
   };
 
   const confirmarExclusao = () => {
+    dispatch({type: ActionsType.DELETE, payload: {id: livroId!}});
     setModalVisible(false);
     setLivroId(null);
   };
@@ -63,7 +64,7 @@ const Home: React.FC<HomeProps> = ({ navigation, route }) => {
   );
 
   return (
-    <Container>
+    state && <Container>
       {state.items.length === 0 ? (
         <MensagemVazia>Não há livros cadastrados.</MensagemVazia>
       ) : (

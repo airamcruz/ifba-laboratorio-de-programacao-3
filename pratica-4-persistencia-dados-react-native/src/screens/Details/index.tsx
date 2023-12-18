@@ -1,32 +1,45 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import {
   BotaoVoltar,
   Container, DetalheItem, Label, TextoBotao,
 } from './styles';
-import { Livro } from '../../entities/Livro';
 import { DetailsProps } from './types';
+import { ActionsType } from '../../hooks/createReducerContext/actions';
+import { useLivroContext } from '../../states/livro/context';
 
 
 const Details: React.FC<DetailsProps> = ({ navigation, route }) => {
+ 
+  const {state, dispatch}= useLivroContext("Details")
 
-  const [livro, setLivro] = useState<Livro | null>(null);
+  useEffect(() => {
+
+    console.log("Buscar Detalhe Livro")
+    dispatch({type: ActionsType.LIST_ALL})
+
+    const livroId = route.params?.id as number || null;
+
+    if (livroId) {
+      dispatch({type: ActionsType.DETAILS, payload: {id: livroId}})
+    }
+  }, []);
 
   return (
     <Container>
           <Label>Título:</Label>
-          <DetalheItem>{livro?.titulo}</DetalheItem>
+          <DetalheItem>{state.item?.titulo}</DetalheItem>
 
           <Label>Autor:</Label>
-          <DetalheItem>{livro?.autor}</DetalheItem>
+          <DetalheItem>{state.item?.autor}</DetalheItem>
 
           <Label>Gênero:</Label>
-          <DetalheItem>{livro?.genero}</DetalheItem>
+          <DetalheItem>{state.item?.genero}</DetalheItem>
 
           <Label>Criado em:</Label>
-          <DetalheItem>{livro?.createdAt.toLocaleString()}</DetalheItem>
+          <DetalheItem>{state.item?.createdAt.toLocaleString()}</DetalheItem>
 
           <Label>Atualizado em:</Label>
-          <DetalheItem>{livro?.updatedAt.toLocaleString()}</DetalheItem>
+          <DetalheItem>{state.item?.updatedAt.toLocaleString()}</DetalheItem>
 
           <BotaoVoltar onPress={() => navigation.goBack()}>
             <TextoBotao>Voltar</TextoBotao>

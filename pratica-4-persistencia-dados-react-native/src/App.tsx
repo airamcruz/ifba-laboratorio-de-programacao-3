@@ -2,13 +2,10 @@ import { NavigationContainer } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { StackNavigator } from './navigation/stacknavigator';
-import { createReducerContext, useDatabaseInitialize } from './hooks';
-import { initialState, reducer } from './states/livro/reducer';
+import { useDatabaseInitialize } from './hooks';
+import { LivroProvider } from './states/livro/context';
 
 const AppRoot = () => {
-
-  const [LivroProvider] = createReducerContext({ initialState, reducer })
-
   return (
     <LivroProvider>
       <NavigationContainer>

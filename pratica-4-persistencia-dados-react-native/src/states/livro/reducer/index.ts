@@ -1,6 +1,7 @@
 import { Livro } from "../../../entities/Livro";
 import { ActionsType } from "../../../hooks/createReducerContext/actions";
 import { IStateProps, TFunctionReducer } from "../../../hooks/createReducerContext/types";
+import { EntityRepository } from "../../../repository/base";
 import { TActionsLivro } from "./actions";
 import { TPayloadCreateLivro, TPayloadDeleteLivro, TPayloadDetailsLivro, TPayloadUpdateLivro } from "./types";
 
@@ -12,9 +13,7 @@ const initialState: IStateProps<Livro> = {
 }
 
 const reducer: TFunctionReducer<Livro, TActionsLivro> = (prevState, action) => {
-
     switch (action.type) {
-
         case ActionsType.CREATE:
             const newItem = create(action.payload);
             return { ...prevState, items: [...prevState.items, newItem] };
@@ -41,8 +40,17 @@ const reducer: TFunctionReducer<Livro, TActionsLivro> = (prevState, action) => {
     }
 }
 
-function create(item : TPayloadCreateLivro): Livro {
-    return {} as Livro;
+const repository = new EntityRepository<Livro>();
+
+function create(item : TPayloadCreateLivro): Livro{
+    const livro = new Livro();
+    livro.autor = item.autor
+    livro.genero = item.genero
+    livro.titulo = item.titulo
+
+    //const result = await repository.create(livro);
+
+    return livro;
 }
 
 function update(item : TPayloadUpdateLivro): Livro {
