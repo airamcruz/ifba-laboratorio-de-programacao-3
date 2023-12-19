@@ -1,4 +1,4 @@
-import { TFormStackParam } from "../../navigation/types";
+import { TFormStackParam } from "navigation/types";
 
 interface FormProps extends TFormStackParam{
 }

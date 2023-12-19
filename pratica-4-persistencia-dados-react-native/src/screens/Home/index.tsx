@@ -10,25 +10,29 @@ import {
   BotaoVisualizar,
   MensagemVazia,
 } from './styles';
-import { Livro } from '../../entities/Livro';
-import { ModalConfirm } from '../../cp/modal-confirm';
 import { HomeProps } from './types';
-import { ActionsType } from '../../hooks/createReducerContext/actions';
-import { useLivroContext } from '../../states/livro/context';
+import { useLivroContext } from 'states/livro/context';
+import { Livro } from 'entities/Livro';
+import { ModalConfirm } from 'cp/modal-confirm';
 
 const Home: React.FC<HomeProps> = ({ navigation, route }) => {
 
-  const {state, dispatch}= useLivroContext("Home")
+  const [state, controller]= useLivroContext("Home");
 
   const [modalVisible, setModalVisible] = useState(false);
 
   const [livroId, setLivroId] = useState<number|null>(null);
 
-  useEffect(() => {   
-    dispatch({type: ActionsType.LIST_ALL})
-  }, []);
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', () => {
+      controller.findAll();
+    });
 
-  const handleEditar = (id: number) => {
+    return unsubscribe;
+  }, [navigation]);
+
+  const handleEditar = async (id: number) => {
+    await controller.details(id);
     navigation.push('Form', {id: id})
   };
 
@@ -37,12 +41,11 @@ const Home: React.FC<HomeProps> = ({ navigation, route }) => {
   };  
 
   const handleRemover = (livroId: number) => {
-    setLivroId(livroId);
     setModalVisible(true);
   };
 
   const confirmarExclusao = () => {
-    dispatch({type: ActionsType.DELETE, payload: {id: livroId!}});
+    controller.delete(livroId!);
     setModalVisible(false);
     setLivroId(null);
   };

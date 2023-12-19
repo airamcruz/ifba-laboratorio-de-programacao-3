@@ -1,13 +1,13 @@
 import { DataSource, DataSourceOptions } from 'typeorm';
 import * as SQLite from 'expo-sqlite';
-import { Livro } from '../entities/Livro';
+import { Livro } from 'entities/Livro';
 
 const configDataSource : DataSourceOptions = {    
     database: 'pratica4lamc.db',
     type: 'expo',
     driver: SQLite,
     entities: [Livro],
-    logging: true,
+    // logging: true,
     synchronize: true,
 }
 

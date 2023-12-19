@@ -1,21 +1,8 @@
 enum ActionsType {
-    CREATE,
-    UPDATE,
-    DELETE,
     DETAILS,
     LIST_ALL,
     ERROR,
-    INPUT_FIELD,
-}
-
-type TPayloadInputField= {
-    field: string,
-    value: any,
-}
-
-type TActionInputField = {
-    type: ActionsType.INPUT_FIELD,
-    payload: TPayloadInputField,
+    SUCESS,
 }
 
 type TPayloadError = {
@@ -23,16 +10,50 @@ type TPayloadError = {
 }
 
 type TActionError = {
-    type: ActionsType.INPUT_FIELD,
+    type: ActionsType.ERROR,
     payload: TPayloadError,
 }
+
+type TPayloadSucess = {
+    message: string,
+}
+
+type TActionSucess = {
+    type: ActionsType.SUCESS,
+    payload: TPayloadSucess,
+}
+
+type TPayloadListAll<T> = {
+    items: T[],
+}
+
+type TActionListAll<T> = {
+    type: ActionsType.LIST_ALL,
+    payload: TPayloadListAll<T>,
+}
+
+type TPayloadDetails<T> = {
+    item: T,
+}
+
+type TActionDetails<T> = {
+    type: ActionsType.DETAILS,
+    payload: TPayloadDetails<T>,
+}
+
+type TActions<T> = TActionSucess  | TActionError | TActionDetails<T> | TActionListAll<T>
 
 export {
     ActionsType,
 
-    TActionInputField,
-    TPayloadInputField,
+    TActions,
 
     TActionError,
     TPayloadError,
+    TActionSucess,
+    TPayloadSucess,
+    TPayloadListAll,
+    TActionListAll,
+    TPayloadDetails,
+    TActionDetails
 }

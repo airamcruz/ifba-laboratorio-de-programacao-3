@@ -4,17 +4,16 @@
     "strict": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    // "baseUrl": "./",
-    // "paths": {
-    //   "cp/*": ["./src/cp/*"],
-    //   "entities/*": ["./src/entities/*"],
-    //   "hooks/*": ["./src/hooks/*"],
-    //   "navigation/*": ["./src/navigation/*"],
-    //   "repository/*": ["./src/repository/*"],
-    //   "screens/*": ["./src/screens/*"],
-    //   "services/*": ["./src/services/*"],
-    //   "states/*": ["./src/states/*"],
-    //   "stored/*": ["./src/stored/*"],
-    //   },
+    "baseUrl": "./",
+    "paths": {
+      "cp/*": ["./src/cp/*"],
+      "csr/*": ["src/csr/*"],
+      "entities/*": ["./src/entities/*"],
+      "hooks/*": ["./src/hooks/*"],
+      "navigation/*": ["./src/navigation/*"],
+      "screens/*": ["./src/screens/*"],
+      "states/*": ["./src/states/*"],
+      "stored/*": ["./src/stored/*"],
+      },
   }
 }

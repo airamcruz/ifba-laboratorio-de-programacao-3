@@ -1,4 +1,5 @@
-import { THomeStackParam,  } from "../../navigation/types";
+import { THomeStackParam } from "navigation/types";
+
 
 interface HomeProps extends THomeStackParam{
 }

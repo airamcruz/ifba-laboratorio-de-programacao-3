@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { AppDataSource } from "../../stored/db";
+import { AppDataSource } from "stored/db";
 
 export function useDatabaseInitialize() {
   

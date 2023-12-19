@@ -1,3 +1,5 @@
 interface IEntityBase{
-    id: number;
+    id: number | undefined;
+    createdAt?: Date;
+    updatedAt?: Date;
 };

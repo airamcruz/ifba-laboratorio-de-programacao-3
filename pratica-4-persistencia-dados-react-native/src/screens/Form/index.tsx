@@ -1,45 +1,31 @@
 import React, { useEffect, useState } from 'react';
 import {
   BotaoSalvar,
-  Container, Input, TextoBotao,
+  Container, Input, Label, TextoBotao,
 } from './styles';
 import { FormProps } from './types';
-import { Label } from '../../cp/label';
-import { Genero } from '../../entities/Livro/type';
-import { ActionsType } from '../../hooks/createReducerContext/actions';
+import { Genero } from 'entities/Livro/type';
+import { useLivroContext } from 'states/livro/context';
 import { Picker } from '@react-native-picker/picker';
-import { useLivroContext } from '../../states/livro/context';
 
 
 const Form: React.FC<FormProps> = ({ navigation, route }) => {
 
-  const {state, dispatch}= useLivroContext("Form")
+  const [state, controller]= useLivroContext("Form");
 
-  const [livroId, setLivroId] = useState<number | null>(null);
+  const [livroId, setLivroId] = useState<number | undefined>(undefined);
   const [titulo, setTitulo] = useState('');
   const [autor, setAutor] = useState('');
   const [genero, setGenero] = useState<Genero | null>(null);
 
   useEffect(() => {
-
-    const livroId = route.params?.id as number || null;
-
-    setLivroId(livroId);
-
-    if (livroId) {
-
-      navigation.setOptions({title: 'Editar'})
-      
-      dispatch({type: ActionsType.DETAILS, payload:{id: livroId}});
-
-      if(state.item != null) {
-        setTitulo(state.item.titulo);
-        setAutor(state.item.autor);
-        setGenero(state.item.genero);
-      }
-
+    if(state.item) {
+      setLivroId(state.item.id);
+      setTitulo(state.item.titulo);
+      setAutor(state.item.autor);
+      setGenero(state.item.genero);
     }
-  }, []);
+  },[])
 
   const handleSalvar = () => {
     if (!titulo || !autor || !genero) {
@@ -47,20 +33,13 @@ const Form: React.FC<FormProps> = ({ navigation, route }) => {
       return;
     }
 
-    if(livroId) {
-      dispatch({type: ActionsType.UPDATE, payload: {
-        autor: autor,
-        genero: genero,
-        titulo: titulo,
-        id: livroId
-      }})
-    } else {
-      dispatch({type: ActionsType.CREATE, payload: {
-        autor: autor,
-        genero: genero,
-        titulo: titulo
-      }})
-    }
+    controller.save({      
+      autor: autor,
+      genero: genero,
+      titulo: titulo,
+      id: livroId
+    });
+
     navigation.pop();
   };
 
@@ -85,6 +64,7 @@ const Form: React.FC<FormProps> = ({ navigation, route }) => {
       <Picker
         selectedValue={genero}
         onValueChange={setGenero}
+        mode='dialog'
       >
         <Picker.Item label="Selecione" value={null} />
         {Object.values(Genero).map((opcao, index) => (

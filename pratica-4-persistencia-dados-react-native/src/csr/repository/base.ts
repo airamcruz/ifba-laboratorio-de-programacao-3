@@ -1,22 +1,22 @@
+import { Livro } from "entities/Livro";
+import { EntityBase } from "entities/base";
+import { AppDataSource } from "stored/db";
 import { EntityTarget, FindOptionsWhere, ObjectLiteral, Repository } from "typeorm";
-import { AppDataSource } from "../stored/db";
 
 export class EntityRepository<T extends ObjectLiteral> {
 
     private _dbRepository: Repository<T>;
 
-    private _entity!: EntityTarget<T>;
-
-    constructor() {
-        this._dbRepository = AppDataSource.getRepository(this._entity);
+    constructor(entity: EntityTarget<T>) {
+        this._dbRepository = AppDataSource.getRepository(entity);
     }
 
     async create(entity: T) {
         const result = await this._dbRepository.save(entity);
 
-        console.log('====================================');
-        console.log('create : ', result);
-        console.log('====================================');
+        // console.log('====================================');
+        // console.log('create : ', result);
+        // console.log('====================================');
 
         return result;
     }
@@ -24,9 +24,9 @@ export class EntityRepository<T extends ObjectLiteral> {
     async update(entity: T) {
         const result = await this._dbRepository.save(entity);
         
-        console.log('====================================');
-        console.log('update : ', result);
-        console.log('====================================');
+        // console.log('====================================');
+        // console.log('update : ', result);
+        // console.log('====================================');
 
         return result;
     }
@@ -34,19 +34,23 @@ export class EntityRepository<T extends ObjectLiteral> {
     async delete(entity: T) {
         const result = await this._dbRepository.remove(entity)
         
-        console.log('====================================');
-        console.log('delete : ', result);
-        console.log('====================================');
+        // console.log('====================================');
+        // console.log('delete : ', result);
+        // console.log('====================================');
 
         return result;
     }
 
     async findById(id: number) {
         const options: IEntityBase = {
-            id : id
+            id: id
         }
 
         const entity = await this._dbRepository.findOneBy(options as any)
+        
+        // console.log('====================================');
+        // console.log('findById : ', entity);
+        // console.log('====================================');
 
         return entity;
     }

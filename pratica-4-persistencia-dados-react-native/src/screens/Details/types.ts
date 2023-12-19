@@ -1,4 +1,5 @@
-import { TDetailsStackParam,  } from "../../navigation/types";
+import { TDetailsStackParam } from "navigation/types";
+
 
 interface DetailsProps extends TDetailsStackParam{
 }

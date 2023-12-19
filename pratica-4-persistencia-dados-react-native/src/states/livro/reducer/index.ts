@@ -1,9 +1,7 @@
-import { Livro } from "../../../entities/Livro";
-import { ActionsType } from "../../../hooks/createReducerContext/actions";
-import { IStateProps, TFunctionReducer } from "../../../hooks/createReducerContext/types";
-import { EntityRepository } from "../../../repository/base";
-import { TActionsLivro } from "./actions";
-import { TPayloadCreateLivro, TPayloadDeleteLivro, TPayloadDetailsLivro, TPayloadUpdateLivro } from "./types";
+
+import { IStateProps, TFunctionReducer } from "hooks/createReducerContext/types";
+import { Livro } from "entities/Livro";
+import { ActionsType, TActions } from "hooks/createReducerContext/actions";
 
 const initialState: IStateProps<Livro> = {
     items: [],
@@ -12,60 +10,43 @@ const initialState: IStateProps<Livro> = {
     message: ''
 }
 
-const reducer: TFunctionReducer<Livro, TActionsLivro> = (prevState, action) => {
+const reducer: TFunctionReducer<Livro, TActions<Livro>> = (prevState, action) => {
     switch (action.type) {
-        case ActionsType.CREATE:
-            const newItem = create(action.payload);
-            return { ...prevState, items: [...prevState.items, newItem] };
-
-        case ActionsType.UPDATE:
-            const updatedItem = update(action.payload);
-            return { ...prevState, items: [...prevState.items, updatedItem] };
-
-        case ActionsType.DELETE:
-            remove(action.payload);
-            const itemsWithoutRemoved = prevState.items.filter((value) => value.id != action.payload.id);
-            return { ...prevState, items: itemsWithoutRemoved };
 
         case ActionsType.DETAILS:
-            const detailedItem = detail(action.payload);
-            return { ...prevState, item: detailedItem };
+            return{
+                ...prevState,
+                item: action.payload.item,
+            }
+            break;
 
         case ActionsType.LIST_ALL:
-            const allItems = getAll();
-            return { ...prevState, items: allItems };
+            return {
+                ...initialState,
+                items: action.payload.items,
+            }
+            break;
+
+        case ActionsType.ERROR:
+            return {
+                ...prevState,
+                hasError: true,
+                message: action.payload.message
+            }
+            break;
+
+        case ActionsType.SUCESS:
+            return {
+                ...prevState,
+                hasError: false,
+                message: action.payload.message
+            }
+            break;
 
         default:
             return prevState;
+            break;
     }
-}
-
-const repository = new EntityRepository<Livro>();
-
-function create(item : TPayloadCreateLivro): Livro{
-    const livro = new Livro();
-    livro.autor = item.autor
-    livro.genero = item.genero
-    livro.titulo = item.titulo
-
-    //const result = await repository.create(livro);
-
-    return livro;
-}
-
-function update(item : TPayloadUpdateLivro): Livro {
-    return {} as Livro;
-}
-
-function remove(item : TPayloadDeleteLivro) {
-}
-
-function detail(item : TPayloadDetailsLivro): Livro {
-    return {} as Livro;
-}
-
-function getAll(): Livro[] {
-    return [];
 }
 
 export {
